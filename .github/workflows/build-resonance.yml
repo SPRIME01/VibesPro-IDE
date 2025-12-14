@@ -2,7 +2,7 @@ name: Build ResonanceIDE
 
 on:
   push:
-    branches: [main]
+    branches: [main, chore/apply-whitelabeling-and-branding]
   workflow_dispatch:
     inputs:
       platform:
