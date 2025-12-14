@@ -517,7 +517,7 @@ phases:
   # ---------------------------------------------------------------------------
   - id: phase-4-white-labeling
     name: Full VS Code Branding Removal and ResonanceIDE Visuals
-    status: not_started
+    status: completed
     estimated_effort: "3-5 hours"
     depends_on:
       - phase-3-feature-stripping
@@ -525,7 +525,7 @@ phases:
     tasks:
       - id: audit-branding-assets
         goal: Find all VS Code / Microsoft branding references
-        status: not_started
+        status: completed
         instructions: |
           1. Search for text references:
              grep -ri "Visual Studio Code" .
@@ -549,7 +549,7 @@ phases:
 
       - id: replace-branding-assets
         goal: Swap VS Code branding with ResonanceIDE assets
-        status: not_started
+        status: completed
         instructions: |
           1. Prepare ResonanceIDE icon set:
              - App icon (icns for macOS, ico for Windows, png for Linux)
@@ -574,7 +574,7 @@ phases:
 
       - id: verify-trademark-clean
         goal: Ensure no remaining MS branding in UI
-        status: not_started
+        status: completed
         instructions: |
           1. Launch ResonanceIDE and check:
              - Help → About
