@@ -1,6 +1,8 @@
 name: Build ResonanceIDE
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       platform:
@@ -15,7 +17,9 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ inputs.platform == 'darwin' && 'macos-latest' || inputs.platform == 'win32' && 'windows-latest' || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
+    env:
+      PLATFORM: ${{ inputs.platform || 'linux' }}
 
     steps:
       - name: Checkout
@@ -48,17 +52,14 @@ jobs:
       - name: Build ResonanceIDE
         run: |
           export VSCODE_PRODUCT_JSON=build/ResonanceIDE.product.json
-          yarn gulp vscode-${{ inputs.platform }}-x64-min
+          yarn gulp vscode-linux-x64-min
         env:
           NODE_OPTIONS: --max-old-space-size=8192
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ResonanceIDE-${{ inputs.platform }}-x64
-          path: |
-            ../VSCode-linux-x64
-            ../VSCode-darwin-x64
-            ../VSCode-win32-x64
+          name: ResonanceIDE-linux-x64
+          path: ../VSCode-linux-x64
           if-no-files-found: warn
           retention-days: 7
