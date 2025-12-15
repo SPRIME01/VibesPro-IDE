@@ -1,8 +1,7 @@
 name: Build ResonanceIDE
 
 on:
-  push:
-    branches: [main, chore/apply-whitelabeling-and-branding]
+  # Manual trigger from Actions tab
   workflow_dispatch:
     inputs:
       platform:
@@ -14,6 +13,10 @@ on:
           - all
           - linux
           - win32
+  # Auto-build on version tags
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build-linux:
